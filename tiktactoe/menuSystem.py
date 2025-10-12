@@ -1,33 +1,33 @@
-class MenuSystem:
-    """
-    <<Boundary>> MenuSystem
-    - game: Game (objekt som har metoderna set_mode, start, is_over, step)
-    """
+# menuSystem.py
+from game import Game
 
-    def __init__(self, game):
-        self.game = game
+class MenuSystem:
+    """Boundary som visar meny, väljer spelläge och kör spelet."""
+
+    def __init__(self):
+        self.game = None  # sätts efter att användaren valt läge
 
     def run(self):
         while True:
             print("\n=== Game Menu ===")
-            print("1) Välj spelläge")
-            print("2) Starta spel")
-            print("3) Avsluta")
+            print("1) Starta Spel")
+            print("2) Avsluta")
             choice = input("Val: ").strip()
 
             if choice == "1":
                 mode = self.game_mode()
-                self.game.set_mode(mode)
+                self.game = Game(mode=mode)
                 print(f"> Spelläge satt till: {mode}")
-            elif choice == "2":
                 self.run_game()
-            elif choice == "3":
+
+            elif choice == "2":
                 print("Hejdå!")
                 break
-            else:
-                print("Ogiltigt val. Ange 1, 2 eller 3.")
 
-    def game_mode(self):
+            else:
+                print("Ogiltigt val. Ange 1, 2.")
+
+    def game_mode(self) -> str:
         """
         Returnerar antingen:
           - 'human-vs-human'
@@ -48,20 +48,31 @@ class MenuSystem:
     def run_game(self):
         """
         Kör spelet tills det är över.
-        Antaganden om game-API:
-          - start() -> None
-          - is_over() -> bool
-          - step() -> None
+        Matchar Game-API vi byggt:
+          - reset_game()
+          - print_board()
+          - play_turn()
+          - is_over()
+          - winner()
+          - get_current_turn(), moves_str()
         """
+        g = self.game
+        g.reset_game()
         print("\n-- Startar spelet --")
-        self.game.start()
-        while not self.game.is_over():
-            self.game.step()
-        print("-- Spelet slut --")
+
+        while not g.is_over():
+            g.print_board()
+            print(f"Drag: {g.get_current_turn()}")
+            g.play_turn()
+
+        g.print_board()
+        w = g.winner()
+        if w:
+            print(f"Vinnare: {w}")
+        else:
+            print("Oavgjort.")
 
 
-# När din riktiga Game är klar:
-# from mygame import MyGame
-# if __name__ == "__main__":
-#     menu = MenuSystem(MyGame())
-#     menu.run()
+if __name__ == "__main__":
+    menu = MenuSystem()
+    menu.run()
