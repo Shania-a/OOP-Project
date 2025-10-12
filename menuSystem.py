@@ -1,27 +1,27 @@
-# menuSystem.py
 from game import Game
 
 class MenuSystem:
     """Boundary som visar meny, väljer spelläge och kör spelet."""
 
     def __init__(self):
-        self.game = None  # sätts efter att användaren valt läge
+        self.game = None 
 
     def run(self):
         while True:
-            print("\n=== Game Menu ===")
+            print("\n Tic-Tac-Toe! ")
             print("1) Starta Spel")
             print("2) Avsluta")
             choice = input("Val: ").strip()
 
             if choice == "1":
-                mode = self.game_mode()
-                self.game = Game(mode=mode)
-                print(f"> Spelläge satt till: {mode}")
+                selected_mode = self.game_mode()
+                self.game = Game(mode=selected_mode)
+
+                print(f"Spelläge satt till: {selected_mode}")
                 self.run_game()
 
             elif choice == "2":
-                print("Hejdå!")
+                print("Bye!")
                 break
 
             else:
@@ -29,20 +29,16 @@ class MenuSystem:
 
     def game_mode(self) -> str:
         """
-        Returnerar antingen:
-          - 'human-vs-human'
-          - 'human-vs-ai'
+        Returnerar antingen: 1 eller 2 som sträng
         """
-        modes = {"1": "human-vs-human", "2": "human-vs-ai"}
 
         print("\n-- Välj spelläge --")
         print("1) Människa vs Människa")
-        print("2) Människa vs AI")
-
+        print("2) Människa vs Computer")
         while True:
             choice = input("Val: ").strip()
-            if choice in modes:
-                return modes[choice]
+            if choice == "1" or "2":
+                return choice
             print("Ogiltigt val. Ange 1 eller 2.")
 
     def run_game(self):
@@ -54,21 +50,21 @@ class MenuSystem:
           - play_turn()
           - is_over()
           - winner()
-          - get_current_turn(), moves_str()
+          - get_current_turn()
         """
-        g = self.game
-        g.reset_game()
+        game = self.game
+        game.reset_game()
         print("\n-- Startar spelet --")
 
-        while not g.is_over():
-            g.print_board()
-            print(f"Drag: {g.get_current_turn()}")
-            g.play_turn()
+        while not game.is_over():
+            game.print_board()
+            print(f"Drag: {game.get_current_turn()}")
+            game.play_turn()
 
-        g.print_board()
-        w = g.winner()
-        if w:
-            print(f"Vinnare: {w}")
+        game.print_board()
+        win = game.winner()
+        if win:
+            print(f"Vinnare: {win}")
         else:
             print("Oavgjort.")
 

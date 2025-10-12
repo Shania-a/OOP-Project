@@ -1,5 +1,3 @@
-# board.py
-
 class Board:
     """Kontrollerar brädets tillstånd och regler för tre-i-rad (3x3)."""
 
@@ -26,11 +24,11 @@ class Board:
             return True
         return False
 
-    def available_moves(self, type) -> list[int]:
-        return [i for i, c in enumerate(self.__cells) if c == ""]
+    def available_moves(self) -> list[int]: 
+        return [index for index, cell in enumerate(self.__cells) if cell == ""]
 
     def is_full(self) -> bool:
-        return all(c != "" for c in self.__cells)
+        return all(cell != "" for cell in self.__cells)
 
     def winner(self) -> str:
         lines = [
@@ -47,19 +45,13 @@ class Board:
         return self.winner() != "" or self.is_full()
 
     def __str__(self) -> str:
-        def v(i):
-            return self.__cells[i] if self.__cells[i] else str(i + 1)
+        def valjue(index):
+            return self.__cells[index] if self.__cells[index] else str(index + 1)
         rows = [
-            f" {v(0)} | {v(1)} | {v(2)} ",
+            f" {valjue(0)} | {valjue(1)} | {valjue(2)} ",
             "---+---+---",
-            f" {v(3)} | {v(4)} | {v(5)} ",
+            f" {valjue(3)} | {valjue(4)} | {valjue(5)} ",
             "---+---+---",
-            f" {v(6)} | {v(7)} | {v(8)} ",
+            f" {valjue(6)} | {valjue(7)} | {valjue(8)} ",
         ]
         return "\n".join(rows)
-
-    def copy(self):
-        b = Board()
-        for i, val in enumerate(self.__cells):
-            b.set_cell(i, val)
-        return b
