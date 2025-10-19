@@ -80,7 +80,7 @@ class Game:
         """Return the winner: "X" or "O" """
         return self.__board.winner()
 
-    def print_board(self) -> None:
+    def print_board(self) -> str:
         """Print the board."""
         return print(str(self.__board))
 
