@@ -1,5 +1,5 @@
 class Board:
-    """Encapsulates the Tic-Tac-Toe board state and rule checks."""
+    """Encapsulates the Tic Tac Toe board state and rule checks."""
 
     def __init__(self):
         """Initialize an empty 3x3 board represented as 9 string cells."""
@@ -10,7 +10,7 @@ class Board:
         Return an view of the current board cells.
 
         Returns:
-            tuple[str, ...]: A 9-item tuple with values "", "X", or "O".
+            tuple[str, ...]: A 9-item tuple with values "", "X" or "O".
         """
         return tuple(self.__cells)
 
@@ -53,10 +53,10 @@ class Board:
 
     def available_moves(self) -> list[int]:
         """
-        List indices that are currently empty.
+        List indexes that are currently empty.
 
         Returns:
-            list[int]: Zero-based indices for all playable cells.
+            list[int]: Zero-based indexes for all playable cells.
         """
         return [index for index, cell in enumerate(self.__cells) if cell == ""]
 
