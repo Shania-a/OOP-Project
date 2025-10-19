@@ -1,7 +1,7 @@
 from game import Game
 
 class MenuSystem:
-    """Boundary class that displays the menu, selects game mode, and runs the game loop."""
+    """Boundary class that displays the menu, selects game mode and runs the game loop."""
 
     def __init__(self):
         """Initialize the menu system with no active Game instance."""
@@ -9,11 +9,11 @@ class MenuSystem:
 
     def run(self):
         """
-        Run the top-level menu loop.
+        Runs the menu loop.
 
-        Continuously shows the main menu until the user chooses to exit.
-        On "Start", it asks for a game mode, creates a Game instance,
-        and delegates to `run_game()` to handle the gameplay loop.
+        Shows the main menu until the user chooses to exit.
+        Asks for a game mode, creates a Game instance
+        and starts run_game() method to handle the gameplay loop.
         """
         while True:
             print("\n Tic-Tac-Toe! ")
@@ -53,20 +53,13 @@ class MenuSystem:
 
     def run_game(self):
         """
-        Run a single game session until it ends.
+        Execute a playthrough using the current game instance.
 
-        Follows the Game API:
-            - reset_game()
-            - print_board()
-            - play_turn()
-            - is_over()
-            - winner()
-            - get_current_turn()
-
-        Side effects:
-            Prints the board and turn prompts to stdout and announces
-            the result (winner or draw) at the end.
-        """
+        The method initializes the game, advances turns until a end-state is reached and then finalizes the session.
+        
+        Returns:
+            None
+         """
         game = self.game
         game.reset_game()
         print("\n-- Startar spelet --")
@@ -85,6 +78,6 @@ class MenuSystem:
 
 
 if __name__ == "__main__":
-    # Entrypoint: create and run the menu-driven Tic-Tac-Toe application.
+    """Create and run the program"""
     menu = MenuSystem()
     menu.run()

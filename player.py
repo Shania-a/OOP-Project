@@ -20,7 +20,7 @@ class Player(ABC):
     @abstractmethod
     def make_move(self, board) -> int:
         """
-        Returns a inxed from 0-8 where the player wants to place their piece.
+        Returns a indxed from 0-8 where the player wants to place their piece.
         Abstract: implemented in subclass.
         """
         pass
