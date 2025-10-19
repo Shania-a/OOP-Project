@@ -5,7 +5,7 @@ from computer import Computer
 class Game:
     """
     A game between two players on a Board
-    Uses private fields with getter/setter methods
+    Uses private fields with getter/setter methods.
     """
     def __init__(self, mode: str = "1" or "2"):
         """

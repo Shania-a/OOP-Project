@@ -7,7 +7,7 @@ class MenuSystem:
         """Initialize the menu system with no active Game instance."""
         self.game = None 
 
-    def run(self):
+    def run(self) -> None:
         """
         Runs the menu loop.
 
@@ -51,12 +51,12 @@ class MenuSystem:
                 return choice
             print("Ogiltigt val. Ange 1 eller 2.")
 
-    def run_game(self):
+    def run_game(self) -> None:
         """
         Execute a playthrough using the current game instance.
 
         The method initializes the game, advances turns until a end-state is reached and then finalizes the session.
-        
+
         Returns:
             None
          """
