@@ -19,13 +19,13 @@ class HumanPlayer(Player):
         """
         Ask the user for a move and return it as a board index.
 
-        Expects the user to enter a number 1–9.
+        Expects the user to enter a number 1-9.
 
         Args:
             board: Board object with an available_moves() method.
 
         Returns:
-            int: The chosen move index (0–8).
+            int: The chosen move index (0-8).
         """
         while True:
             user_input = input(f"Spelare {self.get_piece()}, välj ruta 1-9: ").strip()
