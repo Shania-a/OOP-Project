@@ -7,11 +7,10 @@ class Board:
 
     def get_cells(self) -> tuple[str, ...]:
         """
-        Return an immutable view of the current board cells.
+        Return an view of the current board cells.
 
         Returns:
             tuple[str, ...]: A 9-item tuple with values "", "X", or "O".
-                Do not mutate externally.
         """
         return tuple(self.__cells)
 
@@ -19,20 +18,17 @@ class Board:
         """
         Directly set a cell value without rule validation.
 
-        Note:
-            Rarely needed in normal gameplay; use `place` to respect rules.
-
         Args:
-            index (int): Cell index in range 0..8.
+            index (int): Cell index in range 0 - 8.
             piece (str): Typically "X" or "O", or "" to clear.
 
         Raises:
-            IndexError: If `index` is outside 0..8.
+            IndexError: If index is outside 0 - 8.
         """
         if 0 <= index < 9:
             self.__cells[index] = piece
         else:
-            raise IndexError("index must be 0..8")
+            raise IndexError("index must be 0 - 8")
 
     def reset_board(self) -> None:
         """Clear the board to its initial empty state."""
@@ -43,7 +39,7 @@ class Board:
         Place a piece on the board if the move is valid.
 
         Args:
-            index (int): Cell index in range 0..8.
+            index (int): Cell index in range 0 - 8.
             piece (str): Usually "X" or "O".
 
         Returns:
@@ -75,10 +71,10 @@ class Board:
 
     def winner(self) -> str:
         """
-        Determine the current winner, if any.
+        Determine the current winner if any.
 
         Returns:
-            str: "X" or "O" if there is a winning line; otherwise "" (empty string).
+            str: "X" or "O" if there is a winning line, otherwise "".
         """
         lines = [
             (0, 1, 2), (3, 4, 5), (6, 7, 8),  # rows
@@ -95,7 +91,7 @@ class Board:
         Check if the game is over.
 
         Returns:
-            bool: True if someone has won or the board is full (draw); else False.
+            bool: True if someone has won or the board is full, else False.
         """
         return self.winner() != "" or self.is_full()
 
@@ -103,13 +99,13 @@ class Board:
         """
         Render a human-readable board.
 
-        Empty cells are shown as their 1-based position, e.g., "1".."9".
+        Empty cells are shown as their show position: 1 - 9.
         Filled cells show "X" or "O".
 
         Returns:
             str: A multi-line string depicting the board.
         """
-        def valjue(index):  # kept original helper name
+        def valjue(index): 
             return self.__cells[index] if self.__cells[index] else str(index + 1)
 
         rows = [
