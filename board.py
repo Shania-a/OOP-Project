@@ -97,7 +97,7 @@ class Board:
 
     def __str__(self) -> str:
         """
-        Render a human-readable board.
+        Render a readable board.
 
         Empty cells are shown as their show position: 1 - 9.
         Filled cells show "X" or "O".
