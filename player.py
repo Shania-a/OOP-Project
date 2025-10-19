@@ -1,22 +1,27 @@
 from abc import ABC, abstractmethod
 
 class Player(ABC):
-    """Abstrakt bas-entity för spelare med privat pjäs X eller O."""
+    """
+    Abstract base class for players with a private piece: "X" or "O".
+    """
 
     def __init__(self, piece: str):
+        """Create a player with the given piece."""
         self.set_piece(piece) 
 
     def get_piece(self) -> str:
+        """Return the players piece."""
         return self.__piece
 
     def set_piece(self, value: str) -> None:
+        """Set the players piece."""
         self.__piece = value
 
     @abstractmethod
     def make_move(self, board) -> int:
         """
-        Ska returnera ett index (0..8) där spelaren vill spela.
-        Abstrakt: måste implementeras i subklass.
+        Returns a inxed from 0-8 where the player wants to place their piece.
+        Abstract: implemented in subclass.
         """
         pass
 
