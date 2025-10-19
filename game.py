@@ -82,7 +82,7 @@ class Game:
 
     def print_board(self) -> None:
         """Print the board."""
-        print(str(self.__board))
+        return print(str(self.__board))
 
     def reset_game(self) -> None:
         """Reset the board and set the turn back to 'X'."""
