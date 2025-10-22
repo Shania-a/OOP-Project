@@ -94,7 +94,7 @@ class MenuSystem:
         o = self.game.get_o_player()
         x_wins = getattr(x, "wins", 0)
         o_wins = getattr(o, "wins", 0)
-        print(f"Ställning – X: {x_wins} | O: {o_wins}")
+        print(f"Ställning - X: {x_wins} | O: {o_wins}")
 
 
 
