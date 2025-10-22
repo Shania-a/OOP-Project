@@ -20,12 +20,12 @@ class MenuSystem:
             print("\n Tic-Tac-Toe! ")
             print("1) Starta Spel")
             print("2) Avsluta")
+            print("3) Visa ställning")  # nytt
             choice = input("Val: ").strip()
 
             if choice == "1":
                 selected_mode = self.game_mode()
                 self.game = Game(mode=selected_mode)
-
                 print(f"Spelläge satt till: {selected_mode}")
                 self.run_game()
 
@@ -33,8 +33,12 @@ class MenuSystem:
                 print("Bye!")
                 break
 
+            elif choice == "3":          # nytt
+                self.show_scores()       # nytt
+
             else:
-                print("Ogiltigt val. Ange 1, 2.")
+                print("Ogiltigt val. Ange 1, 2 eller 3.")
+
 
     def game_mode(self) -> str:
         """
@@ -74,8 +78,25 @@ class MenuSystem:
         win = game.winner()
         if win:
             print(f"Vinnare: {win}")
+            # räkna upp om attributet finns
+            p = game.get_x_player() if win == "X" else game.get_o_player()
+            if hasattr(p, "wins"):
+                p.wins += 1
         else:
             print("Oavgjort.")
+        self.show_scores()
+
+    def show_scores(self) -> None:
+        """Visa antal vinster för X och O om ett spel finns."""
+        if not self.game:
+            print("Inget aktivt spel ännu.")
+            return
+        x = self.game.get_x_player()
+        o = self.game.get_o_player()
+        x_wins = getattr(x, "wins", 0)
+        o_wins = getattr(o, "wins", 0)
+        print(f"Ställning – X: {x_wins} | O: {o_wins}")
+
 
 
 if __name__ == "__main__":

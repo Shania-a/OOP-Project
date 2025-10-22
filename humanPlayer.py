@@ -14,6 +14,7 @@ class HumanPlayer(Player):
             piece (str): The symbol this player uses: "X" or "O".
         """
         super().__init__(piece)
+        self.wins = 0 
 
     def make_move(self, board) -> int:
         """
