@@ -5,7 +5,8 @@ class MenuSystem:
 
     def __init__(self):
         """Initialize the menu system with no active Game instance."""
-        self.game = None 
+        self.game = None
+        self.last_mode = None 
         
 
     def run(self) -> None:
@@ -19,21 +20,27 @@ class MenuSystem:
         while True:
             print("\n Tic-Tac-Toe! ")
             print("1) Starta Spel")
-            print("2) Avsluta")
-            print("3) Visa ställning")  # nytt
+            print("2) Visa ställning")  # nytt
+            print("3) Avsluta")
             choice = input("Val: ").strip()
 
             if choice == "1":
                 selected_mode = self.game_mode()
-                self.game = Game(mode=selected_mode)
+                if self.game is None or self.last_mode != selected_mode:
+                    self.game = Game(mode=selected_mode)   # ny uppsättning spelare
+                    self.last_mode = selected_mode
+                else:
+                    # samma mode, behåller spelarna och deras wins
+                    pass
                 print(f"Spelläge satt till: {selected_mode}")
                 self.run_game()
 
-            elif choice == "2":
+
+            elif choice == "3":
                 print("Bye!")
                 break
 
-            elif choice == "3":          # nytt
+            elif choice == "2":          # nytt
                 self.show_scores()       # nytt
 
             else:
