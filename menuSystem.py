@@ -20,17 +20,17 @@ class MenuSystem:
         while True:
             print("\n Tic-Tac-Toe! ")
             print("1) Starta Spel")
-            print("2) Visa ställning")  # nytt
+            print("2) Visa ställning")
             print("3) Avsluta")
             choice = input("Val: ").strip()
 
             if choice == "1":
                 selected_mode = self.game_mode()
                 if self.game is None or self.last_mode != selected_mode:
-                    self.game = Game(mode=selected_mode)   # ny uppsättning spelare
+                    self.game = Game(mode=selected_mode)   # new session and therefore restoring score
                     self.last_mode = selected_mode
                 else:
-                    # samma mode, behåller spelarna och deras wins
+                    # continuing same mode where score is kept
                     pass
                 print(f"Spelläge satt till: {selected_mode}")
                 self.run_game()
@@ -40,8 +40,8 @@ class MenuSystem:
                 print("Bye!")
                 break
 
-            elif choice == "2":          # nytt
-                self.show_scores()       # nytt
+            elif choice == "2":      
+                self.show_scores()
 
             else:
                 print("Ogiltigt val. Ange 1, 2 eller 3.")
@@ -85,10 +85,10 @@ class MenuSystem:
         win = game.winner()
         if win:
             print(f"Vinnare: {win}")
-            # räkna upp om attributet finns
-            p = game.get_x_player() if win == "X" else game.get_o_player()
-            if hasattr(p, "wins"):
-                p.wins += 1
+            # Check who won
+            score = game.get_x_player() if win == "X" else game.get_o_player()
+            if hasattr(score, "wins"):
+                score.wins += 1
         else:
             print("Oavgjort.")
         self.show_scores()
