@@ -6,6 +6,7 @@ class MenuSystem:
     def __init__(self):
         """Initialize the menu system with no active Game instance."""
         self.game = None 
+        
 
     def run(self) -> None:
         """
