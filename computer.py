@@ -17,6 +17,7 @@ class Computer(Player):
             piece (str): The symbol inherited player uses on the board: "X" or "O"
         """
         super().__init__(piece)
+        self.wins = 0 
 
     def make_move(self, board) -> int:
         """
