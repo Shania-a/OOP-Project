@@ -35,7 +35,9 @@ class Computer(Player):
         Raises:
             RuntimeError: If there are no legal moves remaining.
         """
-        moves = board.available_moves()
-        if not moves:
-            raise RuntimeError("Inga lediga drag kvar för AI.")
-        return random.choice(moves)
+        try:
+            moves = board.available_moves()
+            return random.choice(moves)
+        except (IndexError, RuntimeError):
+            print("Inga lediga drag kvar för AI.")
+            return None
