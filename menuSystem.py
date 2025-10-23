@@ -104,8 +104,6 @@ class MenuSystem:
         o_wins = getattr(o, "wins", 0)
         print(f"Ställning - X: {x_wins} | O: {o_wins}")
 
-
-
 if __name__ == "__main__":
     """Create and run the program"""
     menu = MenuSystem()

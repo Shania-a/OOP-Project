@@ -54,16 +54,17 @@ class Game:
         """Return the O player instance."""
         return self.__o_player
 
-    def __current_player(self) -> str:
+    def current_player(self) -> str:
         """Return the player whose turn it is."""
         return self.__x_player if self.__current_turn == "X" else self.__o_player
 
     def play_turn(self) -> None:
-        """Play a single turn.
+        """
+        Play a single turn.
 
         Asks the current player for a move until a legal move is made, places the piece on the board and switches turn unless the game is over.
         """
-        player = self.__current_player()
+        player = self.current_player()
         while True:
             selected_index = player.make_move(self.__board)
             if self.__board.place(selected_index, player.get_piece()):
